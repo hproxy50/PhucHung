@@ -13,6 +13,14 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
+
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
       <!-- bootstrap css -->
       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
       <!-- style css -->
@@ -35,6 +43,27 @@
       <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
       <link rel="stylesoeet" href="{{asset('css/owl.theme.default.min.css')}}">
       <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css')}}" media="screen">
+      <link rel="stylesheet" type="text/css" href="{{asset('front/css/bootstrap.min.css')}}">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="{{asset('front/css/style.css')}}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="{{asset('front/css/responsive.css')}}">
+      <!-- fevicon -->
+      <link rel="icon" href="{{asset('front/images/fevicon.png')}}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{{asset('front/css/jquery.mCustomScrollbar.min.css')}}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="{{asset('front/https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css')}}">
+      <!-- fonts -->
+      <link href="{{asset('front/https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap')}}" rel="stylesheet">
+      <!-- font awesome -->
+      <link rel="stylesheet" type="text/css" href="{{asset('front/https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
+      <!--  -->
+      <!-- owl stylesheets -->
+      <link href="{{asset('front/https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext')}}" rel="stylesheet">
+      <link rel="stylesheet" href="{{asset('front/css/owl.carousel.min.css')}}">
+      <link rel="stylesoeet" href="{{asset('front/css/owl.theme.default.min.css')}}">
+      <link rel="stylesheet" href="{{asset('front/https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css')}}" media="screen">
       <style>
 .search-form-group {
   width: 10cm;
@@ -109,8 +138,9 @@
     <body>
       @extends('products.app')
       <div class="paddma">
+
       <form action="{{ route('shop.index') }}" method="GET" class="d-flex align-items-center" style="margin-top: 50px; margin-bottom: 50px">
-        <div class="search-form-group me-2">
+        <div class="search-form-group me-2 flex-grow-1" style="margin-top:10px">
           <div class="search-input-group">
             <input type="text" name="query" placeholder="Search..." class="form-control" value="{{ request()->query('query') }}">
             <div class="input-group-append">
@@ -120,8 +150,8 @@
             </div>
           </div>
         </div>
-        <div class="category-form-group" style="padding-left:6cm " >
-          <strong>Select Category:</strong>
+        <div class="category-form-group ms-2 "style="margin-top:10px">
+         
           <select name="category_name" class="form-control" onchange="this.form.submit()" style="width: 250px">
             <option value="">All Categories</option>
             @foreach ($categories as $category)
@@ -132,13 +162,65 @@
           </select>
         </div>
       </form>
-
+      
       <div class="cart-icon">
         <a href="http://127.0.0.1:8000/cart">
           <i class="fa fa-shopping-cart"></i>
         </a>
       </div>
       
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="padding-bottom: 60px">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/images/342018836_157522410305150_4803345349855456444_n.png" class="d-block w-100" alt="Slide 1" style="height: 350px; weight: 100px">
+      <div class="carousel-caption d-none d-md-block">
+        <h1 class="banner_taital" style="color:black;">Get Start <br>Your favorite shoping</h1>
+                              <div class="buynow_bt"><a href="#">Buy Now</a></div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/images/342146514_198930669552503_3174108893688978669_n.png" class="d-block w-100" alt="Slide 2" style="height: 350px; weight: 100px">
+      <div class="carousel-caption d-none d-md-block">
+        <h1 class="banner_taital" style="color:black;">Boost Your Productivity with  <br>PhucHung Shop</h1>
+                              <div class="buynow_bt"><a href="#">Buy Now</a></div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/images/342182254_245774984528036_6628354502074715935_n.png" class="d-block w-100" alt="Slide 3" style="height: 350px; weight: 100px">
+      <div class="carousel-caption d-none d-md-block">
+        
+                              <h1 class="banner_taital" style="color:black;">Get the Best Deals on Laptops<br>Shop now</h1>
+                              <div class="buynow_bt"><a href="#">Buy Now</a></div>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.carousel').carousel({
+      interval: 3000 // change the interval time in milliseconds here
+    });
+  });
+</script>
+
+
+
+
       <div class="row">
         @foreach ($products as $product)
           <div class="col-md-4 mb-4">
@@ -168,6 +250,15 @@
       </div> 
     </div>            
     </body> 
+    <script src="{{asset('front/js/jquery.min.js')}}"></script>
+      <script src="{{asset('front/js/popper.min.js')}}"></script>
+      <script src="{{asset('front/js/bootstrap.bundle.min.js')}}"></script>
+      <script src="{{asset('front/js/jquery-3.0.0.min.js')}}"></script>
+      <script src="{{asset('front/js/plugin.js')}}"></script>
+      <!-- sidebar -->
+      <script src="{{asset('front/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+      <script src="{{asset('front/js/custom.js')}}"></script>
+      <script>
     @include('footer') 
 </html>
 

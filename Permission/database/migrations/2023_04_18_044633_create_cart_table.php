@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cart', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->integer('quantity');
-            $table->decimal('price', 8, 2);
-            $table->timestamps();
-
-            $table->foreign('product_id')->references('id')->on('products');
+        Schema::create('cart_items', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('product_id');
+        $table->string('name');
+        $table->integer('quantity');
+        $table->decimal('price', 8, 2);
+        $table->timestamps();
+        $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

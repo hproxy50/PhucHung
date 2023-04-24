@@ -11,7 +11,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cartItems = Session::get('products.cart', []);
+        $cartItems = CartItem::all();
         $totalPrice = $this->getTotalPrice($cartItems);
         return view('products.cart', compact('cartItems', 'totalPrice'));
     }
@@ -27,62 +27,53 @@ class CartController extends Controller
     public function add(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        $cartItems = Session::get('products.cart', []);
-    
-        // Tìm kiếm sản phẩm trong giỏ hàng với ID tương ứng
-        $itemId = array_search($id, array_column($cartItems, 'product_id'));
-    
         $quantity = $request->input('quantity', 1);
-    
-        if ($itemId !== false) {
-            // Nếu sản phẩm đã có trong giỏ hàng, cập nhật số lượng sản phẩm đó
-            $cartItems[$itemId]['quantity'] = $quantity;
+        //xác định xem sản phẩm đã có trong giỏ hàng hay chưa
+        $cartItem = CartItem::where('product_id', $product->id)->first();
+        
+        if (!$cartItem) {
+            // Nếu sản phẩm chưa có trong giỏ hàng, tạo một bản ghi mới
+            $cartItem = new CartItem;
+            $cartItem->product_id = $product->id;
+            $cartItem->name = $product->name;
+            $cartItem->quantity = $quantity;
+            $cartItem->price = $product->price;
         } else {
-            // Nếu sản phẩm không có trong giỏ hàng, thêm sản phẩm mới vào giỏ hàng
-            $newItemId = count($cartItems) > 0 ? max(array_column($cartItems, 'id')) + 1 : 1;
-            $cartItem = [
-                'id' => $newItemId,
-                'product_id' => $product->id,
-                'name' => $product->name,
-                'quantity' => $quantity,
-                'price' => $product->price,
-            ];
-            array_push($cartItems, $cartItem);
+            // Nếu sản phẩm đã có trong giỏ hàng, cập nhật số lượng sản phẩm đó
+            $cartItem->quantity += $quantity;
         }
+        
+        $cartItem->save();
     
-        Session::put('products.cart', $cartItems);
-    
-        $totalPrice = $this->getTotalPrice($cartItems);
-    
+        $totalPrice = $this->getTotalPrice(CartItem::all());
+        
         return redirect()->route('products.cart')->with('success', 'Product added to cart.')->with('totalPrice', $totalPrice);
     }
     
+    
 
     public function remove($id)
-    {
-        $cartItems = Session::get('products.cart', []);
+   {
+    $cartItem = CartItem::findOrFail($id);
+    $cartItem->delete();
 
-        foreach ($cartItems as $key => $item) {
-            if ($item['id'] == $id) {
-                unset($cartItems[$key]);
-                break;
-            }
+    $cartItems = Session::get('products.cart', []);
+    foreach ($cartItems as $key => $item) {
+        if ($item['id'] == $id) {
+            unset($cartItems[$key]);
+            break;
         }
-
-        Session::put('products.cart', $cartItems);
-
-        return redirect()->route('products.cart')->with('success', 'Product removed from cart.');
     }
 
-    private function getItemId($productId, $cartItems)
-    {
-        foreach ($cartItems as $key => $item) {
-            if ($item['product_id'] == $productId) {
-                return $key;
-            }
-        }
-        return false;
+    Session::put('products.cart', $cartItems);
+
+    $totalPrice = $this->getTotalPrice(CartItem::all());
+
+    return redirect()->route('products.cart')->with('success', 'Product removed from cart.')->with('totalPrice', $totalPrice);
     }
+
+
+  
 
     private function getTotalPrice($cartItems)
     {

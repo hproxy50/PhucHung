@@ -18,32 +18,32 @@
 <!-- Section: Social media -->
 <section class="mb-4">
   <!-- Facebook -->
-  <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+  <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/profile.php?id=100021912072295" role="button"
     ><i class="fa fa-facebook-f"></i
   ></a>
 
   <!-- Twitter -->
-  <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+  <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/profile.php?id=100021912072295" role="button"
     ><i class="fa fa-twitter"></i
   ></a>
 
   <!-- Google -->
-  <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+  <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/profile.php?id=100021912072295" role="button"
     ><i class="fa fa-google"></i
   ></a>
 
   <!-- Instagram -->
-  <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+  <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/profile.php?id=100021912072295" role="button"
     ><i class="fa fa-instagram"></i
   ></a>
 
   <!-- Linkedin -->
-  <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+  <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/profile.php?id=100021912072295" role="button"
     ><i class="fa fa-linkedin"></i
   ></a>
 
   <!-- Github -->
-  <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+  <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/profile.php?id=100021912072295" role="button"
     ><i class="fa fa-github"></i
   ></a>
 </section>

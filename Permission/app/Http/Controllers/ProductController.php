@@ -24,14 +24,14 @@ class ProductController extends Controller
                         $q->where('name', 'like', '%'.$query.'%')
                           ->orWhere('desc', 'like', '%'.$query.'%');
                     })
-                    ->paginate(12);
+                    ->paginate(100);
             } else {
                 $products = collect();
             }
         } else {
             $products = Product::where('name', 'like', '%'.$query.'%')
                 ->orWhere('desc', 'like', '%'.$query.'%')
-                ->paginate(12);
+                ->paginate(100);
         }
     
         return view('products.index', compact('categories', 'products', 'category_name'));
