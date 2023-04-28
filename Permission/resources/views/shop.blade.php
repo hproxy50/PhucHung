@@ -132,7 +132,6 @@
       </style>
  
    </head>
-
    <x-app-layout>
   </x-app-layout>
     <body>
@@ -171,35 +170,32 @@
       
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="padding-bottom: 60px">
-  <ol class="carousel-indicators">
+  
+  {{-- <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>  --}}
+
+  <ol class="carousel-indicators">
+    @for ($i = 0; $i < count($banners); $i++)
+      <li data-target="#carouselExampleIndicators" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}"></li>
+    @endfor
   </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/images/342018836_157522410305150_4803345349855456444_n.png" class="d-block w-100" alt="Slide 1" style="height: 350px; weight: 100px">
+
+   <div class="carousel-inner">
+    
+    @foreach ($banners as $banner)
+    <div class="carousel-item @if ($loop->first) active @endif">
+      <img src="{{ asset('images/'.$banner->image) }}" class="d-block w-100" alt="Slide 1" style="height: 350px; weight: 100px">
       <div class="carousel-caption d-none d-md-block">
-        <h1 class="banner_taital" style="color:black;">Get Start <br>Your favorite shoping</h1>
+        <h1 class="banner_taital" style="color:black;">{{$banner->description}}</h1>
                               <div class="buynow_bt"><a href="#">Buy Now</a></div>
       </div>
     </div>
-    <div class="carousel-item">
-      <img src="/images/342146514_198930669552503_3174108893688978669_n.png" class="d-block w-100" alt="Slide 2" style="height: 350px; weight: 100px">
-      <div class="carousel-caption d-none d-md-block">
-        <h1 class="banner_taital" style="color:black;">Boost Your Productivity with  <br>PhucHung Shop</h1>
-                              <div class="buynow_bt"><a href="#">Buy Now</a></div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="/images/342182254_245774984528036_6628354502074715935_n.png" class="d-block w-100" alt="Slide 3" style="height: 350px; weight: 100px">
-      <div class="carousel-caption d-none d-md-block">
-        
-                              <h1 class="banner_taital" style="color:black;">Get the Best Deals on Laptops<br>Shop now</h1>
-                              <div class="buynow_bt"><a href="#">Buy Now</a></div>
-      </div>
-    </div>
+    @endforeach
   </div>
+  
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -221,7 +217,7 @@
 
 
 
-      <div class="row">
+      <div class="row" id="product">
         @foreach ($products as $product)
           <div class="col-md-4 mb-4">
             <div class="card h-100" style="background-image: url('')">
@@ -250,6 +246,16 @@
       </div> 
     </div>            
     </body> 
+    <script>
+      $('.buynow_bt a').click(function(e) {
+   e.preventDefault(); // prevent the default behavior of the link
+   var target = $('#product'); // replace "product1" with the ID of your product div
+   $('html, body').animate({
+      scrollTop: target.offset().top // scroll to the top of the product div
+   }, 1000); // adjust the animation speed as needed
+});
+
+    </script>
     <script src="{{asset('front/js/jquery.min.js')}}"></script>
       <script src="{{asset('front/js/popper.min.js')}}"></script>
       <script src="{{asset('front/js/bootstrap.bundle.min.js')}}"></script>

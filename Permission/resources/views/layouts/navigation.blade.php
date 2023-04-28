@@ -39,10 +39,13 @@
                         </x-dropdown-link>
                         @role('admin')
                         <x-dropdown-link :href="route('products.index')">
-                            <i class="fa-brands fa-product-hunt"></i>Product Management
+                            <i class="fa-brands fa-product-hunt"></i> Product Management
                         </x-dropdown-link>
                         <x-dropdown-link :href="route('category.index')">
-                            <i class="fa-solid fa-list"></i>Category Management
+                            <i class="fa-solid fa-list"></i> Category Management
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('banners.index')">
+                            <i class="fa-solid fa-image"></i> Banner Management
                         </x-dropdown-link>
                         @endrole
                         <!-- Authentication -->

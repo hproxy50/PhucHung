@@ -1,6 +1,7 @@
 @extends('products.app')
 
 @section('content')
+
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -18,6 +19,7 @@
                             <th scope="col">Quantity</th>
                             <th scope="col">Total Price</th>
                             <th scope="col">Remove</th>
+                            <th scope="col">Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,7 +28,18 @@
                             <td>{{$key + 1}}</td>
                             <td>{{$cartItem->name}}</td>
                             <td>{{$cartItem->price}}$</td>
-                            <td>{{$cartItem->quantity}}</td>
+                            <td>
+                                <form action="{{ route('cart.update', $cartItem->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <div class="input-group">
+                                        <input type="number" name="quantity" value="{{$cartItem->quantity}}" class="form-control">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
                             <td>{{$cartItem->price * $cartItem->quantity}}$</td>
                             <td>
                                 <form action="{{ route('cart.remove', $cartItem->id) }}" method="POST">
@@ -41,6 +54,7 @@
                             <td colspan="4" align="right"><strong>Total:</strong></td>
                             <td><strong>{{$totalPrice}}$</strong></td>
                             <td></td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -48,7 +62,6 @@
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <a href="{{ url('/shop') }}" class="btn btn-primary btn-sm">Continue Shopping</a>
-                    
                 </div>
             </div>
             @else

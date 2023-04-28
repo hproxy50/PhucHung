@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\http\controllers\ProductController;
 use App\http\controllers\CategoryController;
+use App\http\controllers\BannerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +37,7 @@ require __DIR__.'/auth.php';
 Route::resource("/category",CategoryController::class);
 Route::resource('products',ProductController::class);
 Route::resource('shop',ShopController::class);
-
+Route::resource('banners', BannerController::class);
 Route::resource('cart',ShopController::class);
 
 
@@ -44,6 +45,7 @@ Route::get('/cart', [CartController::class, 'index'])->name('products.cart');
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
-
+Route::get('/cart/editCart/{id}', [CartController::class, 'edit'])->name('cart.edit');
+Route::patch('/cart/editCart/{id}', [CartController::class, 'update'])->name('cart.update');
 
 

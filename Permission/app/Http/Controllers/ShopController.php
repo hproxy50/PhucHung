@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Banner;
 
 class ShopController extends Controller
 {
@@ -13,6 +14,7 @@ class ShopController extends Controller
      */
     public function index(Request $request)
     {
+        $banners = Banner::all();
         $categories = Category::all();
         $query = $request->input('query');
         $category_name = $request->input('category_name');
@@ -34,7 +36,7 @@ class ShopController extends Controller
                 ->paginate(12);
         }
     
-        return view('shop', compact('categories', 'products', 'category_name'));
+        return view('shop', compact('categories', 'products', 'banners', 'category_name'));
     }
 
     /**

@@ -71,7 +71,19 @@ class CartController extends Controller
 
     return redirect()->route('products.cart')->with('success', 'Product removed from cart.')->with('totalPrice', $totalPrice);
     }
-
+    public function edit($id)
+    {
+        $cartItem = CartItem::findOrFail($id);
+        return view('products.editCart', compact('cartItem'));
+    }    
+    
+    public function update(Request $request, $id)
+    {
+        $cartItem = CartItem::findOrFail($id);
+        $cartItem->quantity = $request->input('quantity');
+        $cartItem->save();
+        return redirect()->route('products.cart')->with('success', 'Cart updated successfully.');
+    }
 
   
 
